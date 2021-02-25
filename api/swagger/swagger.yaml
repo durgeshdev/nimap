@@ -1,0 +1,260 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Machine Test
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /products:
+    x-swagger-router-controller: product
+    post:
+      tags: ['Products']
+      description: create product
+      summary: create product
+      # used as the method name of the controller
+      operationId: createProduct
+      parameters:
+        - name: body
+          in: body
+          description: input data
+          schema:
+           $ref: '#/definitions/createProduct'
+          required: true
+      responses:
+        "201":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/response"
+    get:
+      tags: ['Products']
+      summary: get all products
+      description: get all products
+      # used as the method name of the controller
+      operationId: getAllProducts
+      parameters:
+        - name: page
+          in: query
+          description: page no
+          required: false
+          type: number
+          default: 1
+        - name: limit
+          in: query
+          description: per page
+          required: false
+          type: number
+          default: 10
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/response"
+  /products/{id}:
+    x-swagger-router-controller: product
+    patch:
+      tags: ['Products']
+      description: update product
+      summary: update student
+      # used as the method name of the controller
+      operationId: updateProduct
+      parameters:
+        - name: id
+          in: path
+          description:  product id
+          type: string
+          required: true
+        - name: body
+          in: body
+          description: input data
+          schema:
+            $ref: '#/definitions/createProduct'
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/response"
+    delete:
+      tags: ['Products']
+      summary: delete product
+      description: delete product
+      # used as the method name of the controller
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          description:  record id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/response"
+  /category:
+    x-swagger-router-controller: category
+    post:
+      tags: ['Category']
+      description: create category
+      summary: create category
+      # used as the method name of the controller
+      operationId: createCategory
+      parameters:
+        - name: body
+          in: body
+          description: input data
+          schema:
+           $ref: '#/definitions/createCategory'
+          required: true
+      responses:
+        "201":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/response"
+    get:
+      tags: ['Category']
+      summary: get all category
+      description: get all category
+      # used as the method name of the controller
+      operationId: getAllCategories
+      parameters:
+        - name: page
+          in: query
+          description: page no
+          required: false
+          type: number
+          default: 1
+        - name: limit
+          in: query
+          description: per page
+          required: false
+          type: number
+          default: 10
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/response"
+  /category/{id}:
+    x-swagger-router-controller: category
+    patch:
+      tags: ['Category']
+      description: update category
+      summary: update category
+      # used as the method name of the controller
+      operationId: updateCategory
+      parameters:
+        - name: id
+          in: path
+          description:  category id
+          type: string
+          required: true
+        - name: body
+          in: body
+          description: input data
+          schema:
+            $ref: '#/definitions/createCategory'
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/response"
+    delete:
+      tags: ['Category']
+      summary: delete category
+      description: delete category
+      # used as the method name of the controller
+      operationId: deleteCategory
+      parameters:
+        - name: id
+          in: path
+          description:  record id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/response"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  response:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  createProduct:
+    properties:
+      name:
+        type: string
+      categoryId:
+        type: string
+  createCategory:
+    properties:
+      name:
+        type: string

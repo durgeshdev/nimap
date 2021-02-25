@@ -1,0 +1,35 @@
+<!-- header start -->
+<!DOCTYPE html>
+<html ng-app='cbtApp' lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>nimap</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="./nimap/css/bootstrap.min.css">
+</head>
+
+<body class="skin-blue">  
+    <header ui-view="header" class="header"></header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- <div ui-view="leftMenu"></div>
+        <div ui-view="content"></div> -->
+        <div ui-view="content"></div>
+    </div>
+    <!-- fusion chart end -->
+    <script src="./nimap/js/angular.min.js"></script>
+    <script src="./nimap/js/angular-ui-router.min.js"></script>
+    <script src="./nimap/js/stateEvents.js"></script>
+    <script src="./nimap/js/ngStorage.min.js"></script>
+    <script src="./nimap/js/angular-resource.min.js" ></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script> -->
+    <script src="./nimap/js/app.js" type="text/javascript"></script>
+    <script src="./nimap/js/bootstrap.min.js"></script>
+    <script src="./nimap/js/appConfig.js"></script>
+    <script src="./nimap/modules/users/controller.js" ></script>
+    <script src="./nimap/modules/users/service.js" ></script>
+    <script src="./nimap/js/ui-bootstrap-tpls.js"></script>
+</body>
+</html>
